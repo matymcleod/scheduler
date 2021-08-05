@@ -2,7 +2,6 @@ import React from "react";
 import "components/DayListItem.scss";
 import classNames from "classnames";
 
-import { timeout } from "q";
 
 export default function DayListItem(props) {
   

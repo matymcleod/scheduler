@@ -9,7 +9,11 @@ import InterviewerListItem from "components/InterviewerListItem";
 import Button from "components/Button";
 import InterviewerList from "components/InterviewerList"
 import "components/Appointments/index"
-
+import "components/Appointments/Header"
+import Appointment from "components/Appointments/index";
+import { PROPERTY_TYPES } from "@babel/types";
+import Header from "components/Appointments/Header";
+import Empty from "components/Appointments/Empty"
 
 storiesOf("Button", module)
   .addParameters({
@@ -132,8 +136,10 @@ storiesOf("Button", module)
           ));
 
           storiesOf("Appointment", module)
-            .addParameters({
-              backgrounds: [{ name: "white", value: "#fff", default: true }]
-            })
-            .add("Appointment", () => <Appointment />)
-            .add("Appointment with Time", () => <Appointment time="12pm" />);
+          .addParameters({
+            backgrounds: [{ name: "white", value: "#fff", default: true }]
+          })
+          .add("Appointment", () => <Appointment />)
+          .add("Appointment with Time", () => <Appointment time="12pm" />)
+          .add("Header", () => <Header time="12pm" />)
+          .add("Empty", () => <Empty onAdd={action("onAdd")} />)
