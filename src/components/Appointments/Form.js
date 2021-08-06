@@ -18,14 +18,16 @@ export default function Form(props) {
             type="text"
             placeholder="Enter Student Name"
             value={name}
+            onChange={event => setName(event.target.value)}
+            onSubmit={event => event.preventDefault()}
           />
         </form>
         <InterviewerList interviewers={props.interviewers} value={interviewer} onChange={setInterviewer} />
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger>Cancel</Button>
-          <Button confirm>Save</Button>
+          <Button danger onClick={props.onCancel}>Cancel</Button>
+          <Button confirm onClick={props.onConfirm}>Save</Button>
         </section>
       </section>
     </main>

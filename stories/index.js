@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { Fragment } from 'react'
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import DayListItem from "components/DayListItem";
@@ -151,7 +150,30 @@ storiesOf("Button", module)
           .add("Confirm", () => <Confirm onConfirm={action("onConfirm")} onCancel={action("onCancel")}/>)
           .add("Status", () => <Status onStatus={action("onStatus")} />)
           .add("Error", () => <Error onClose={action("onClose")} />)
-          .add("Form", () => <Form onChange={action("onChange")} interviewers = {interviewers} name = "Mathew" interviewer = {2}/>)
-          .add("Empty Form", () => <Form onChange={action("onChange")} interviewers = {interviewers} />)
+          
+          .add("Form", () => <Form onChange={action("onChange")} interviewers = {interviewers} name = "Mathew" interviewer = {2} onCancel={action("onCancel")} onConfirm={action("onConfirm")} onSubmit={action("onSubmit")}/>)
+          
+          
+          .add("Empty Form", () => <Form onChange={action("onChange")} interviewers = {interviewers}  onCancel={action("onCancel")} onConfirm={action("onConfirm")} onSubmit={action("onSubmit")}/>)
+
+          .add("Appointment Empty", () => (
+            <Fragment>
+              <Appointment id={1} time="12pm" />
+              <Appointment id={2} time="1pm" />
+              <Appointment id={3} time="2pm" />
+              <Appointment id="last" time="3pm" />
+            </Fragment>
+          ))
+
+          .add("Appointment Booked", () => (
+            <Fragment>
+              <Appointment
+                id={1}
+                time="12pm"
+                interview={{ student: "Lydia Miller-Jones", interviewer }}
+              />
+              <Appointment id="last" time="1pm" />
+            </Fragment>
+          ))
 
           
