@@ -12,6 +12,9 @@ export function getAppointmentsForDay(state, givenDay) {
 };
 
 export function getInterview(state, interview) {
+
+  
+  
   if (!interview) {
     return null;
   }
