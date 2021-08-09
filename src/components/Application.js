@@ -11,7 +11,8 @@ export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    appointments: {}
+    appointments: {},
+    interviewers: {}
   });
 
   const setDay = function(day) {
@@ -34,8 +35,20 @@ export default function Application(props) {
     }, [])
 
     const appointments = getAppointmentsForDay(state, state.day);
+    console.log(state.interviewers);  
+      
+    const schedule = appointments.map((appointment) => {
+      const interview = getInterview(state, appointmet.interview)
+      return (
+      <Appointment 
+      key={appointment.id}
+      {...appointment}
+      interview={interview}
+      />
+      )
+    })
 
-  return (
+return (
     <main className="layout">
       <section className="sidebar">
         <img
