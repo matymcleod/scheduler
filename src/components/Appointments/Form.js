@@ -6,6 +6,8 @@ export default function Form(props) {
   const [name, setName] = useState(props.name || ""); 
   const [interviewer, setInterviewer] = useState(props.interviewer || null); 
 
+
+  
   const reset = () => {
     setName("");
     setInterviewer(null);
@@ -34,6 +36,7 @@ export default function Form(props) {
             placeholder="Enter Student Name"
             value={name}
             onChange={event => setName(event.target.value)}
+            data-testid="student-name-input"
           />
         </form>
 
