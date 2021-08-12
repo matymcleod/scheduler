@@ -27,6 +27,10 @@ export default function Appointment(props) {
     props.interview && props.interview !== null ? SHOW : EMPTY
   );
 
+
+
+
+
   function save(name, interviewer) {
     const interview = {
       student: name,
@@ -52,6 +56,7 @@ export default function Appointment(props) {
         transition(ERROR_DELETE, true)
       });
   }
+
 
   return (
   <article className="appointment" data-testid="appointment">
@@ -80,27 +85,27 @@ export default function Appointment(props) {
     {mode === CREATE && (
     <Form
     interviewers={props.interviewers}
-        onCancel={back}
+        onCancel={() => back(EMPTY)}
         onSave={save}
         />
     )}
 
     {mode === SAVING && (
       <Status 
-        message={"Saving"}
+        message={'Saving'}
       />
     )}
 
     {mode === DELETING && (
       <Status 
-        message={"Deleting"}
+        message={'Deleting'}
       />
     )}
 
     {mode === CONFIRM && (
       <Confirm
-        message={"Confirm..."}
-        onCancel={back}
+        message={'Confirm?'}
+        onCancel={() => back(EMPTY)}
         onConfirm={remove}
       />
     )}
@@ -110,21 +115,21 @@ export default function Appointment(props) {
       name={props.interview.student}
       interviewers={props.interviewers}
       interviewer={props.interview.interviewer.id}
-      onCancel={back}
+      onCancel={() => back(EMPTY)}
       onSave={save}
       />
     )}
 
     {mode === ERROR_SAVE && (
       <Error
-        message={"Saving error"}
-        onClose={() => {back();}}
+        message={'Error saving appointment'}
+        onClose={() => {back(); back();}}
         />
     )}
 
     {mode === ERROR_DELETE && (
       <Error
-        message={"Deleting error"}
+        message={'Error deleting appointment'}
         onClose={() => {back();}}
         />
     )}

@@ -30,7 +30,7 @@ describe("Application", () => {
     
     
     it("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
-      const { container } = render(<Application />);
+      const { container, debug } = render(<Application />);
     
       await waitForElement(() => getByText(container, "Archie Cohen"));
     
@@ -56,6 +56,8 @@ describe("Application", () => {
     
       expect(getByText(day, "no spots remaining")).toBeInTheDocument();
     });
+
+
     
     it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
       // 1. Render the Application.
@@ -73,11 +75,11 @@ describe("Application", () => {
     
       // 4. Check that the confirmation message is shown.
       expect(
-        getByText(appointment, "Are you sure you would like to delete?")
+        getByText(appointment, "Confirm?")
       ).toBeInTheDocument();
     
       // 5. Click the "Confirm" button on the confirmation.
-      fireEvent.click(queryByText(appointment, "Confirm"));
+      fireEvent.click(queryByText(appointment, "Confirm?"));
     
       // 6. Check that the element with the text "Deleting" is displayed.
       expect(getByText(appointment, "Deleting")).toBeInTheDocument();
@@ -93,7 +95,9 @@ describe("Application", () => {
       expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
     });
 
-    xit("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
+
+
+    it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
       // 1. Render the Application.
       const { container } = render(<Application />);
     
@@ -109,7 +113,7 @@ describe("Application", () => {
       await waitForElement(() => getByDisplayValue(appointment, "Archie Cohen"));
   
       // const query = queryByText(appointment, "Archie Cohen");
-      // console.log("query: ", query);
+    
       // input "Lydia Miller-Jones" into previous text "Archie Cohen"
       fireEvent.change(getByDisplayValue(appointment, "Archie Cohen"), {
         target: { value: "Lydia Miller-Jones" }
@@ -163,13 +167,13 @@ describe("Application", () => {
   
       expect(getByText(appointment, "Saving")).toBeInTheDocument();
   
-      // console.log(prettyDOM(appointment));
+
       // await waitForElement(() => queryByText(appointment, "Lydia Miller-Jones"));
   
       await waitForElement(() => queryByText(appointment, "Error"));
   
       expect(getByText(appointment, "Error saving appointment")).toBeInTheDocument();
-      console.log(prettyDOM(appointment));
+  
   
     });
   
@@ -192,14 +196,14 @@ describe("Application", () => {
       expect(getByText(appointment, "Confirm?")).toBeInTheDocument();
   
       // 5. Click the "Confirm" button on the confirmation.
-      fireEvent.click(queryByText(appointment, "Confirm"));
+      fireEvent.click(queryByText(appointment, "Confirm?"));
   
       expect(getByText(appointment, "Deleting")).toBeInTheDocument();
   
       await waitForElement(() => queryByText(appointment, "Error"));
   
       expect(getByText(appointment, "Error deleting appointment")).toBeInTheDocument();
-      console.log(prettyDOM(appointment));
+
   
     });
   });
