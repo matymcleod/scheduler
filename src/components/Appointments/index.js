@@ -54,7 +54,7 @@ export default function Appointment(props) {
   }
 
   return (
-  <article className="appointment">
+  <article className="appointment" data-testid="appointment">
   
     <Header 
     time={props.time} 
@@ -90,7 +90,7 @@ export default function Appointment(props) {
         message={"Saving"}
       />
     )}
-    
+
     {mode === DELETING && (
       <Status 
         message={"Deleting"}
@@ -118,7 +118,7 @@ export default function Appointment(props) {
     {mode === ERROR_SAVE && (
       <Error
         message={"Saving error"}
-        onClose={() => {back(); back();}}
+        onClose={() => {back();}}
         />
     )}
 
