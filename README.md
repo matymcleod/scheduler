@@ -35,8 +35,6 @@ npm run storybook
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^8.0.7",
     "babel-loader": "^8.0.5",
-    "eslint": "^7.32.0",
-    "eslint-plugin-react": "^7.24.0",
     "node-sass": "^4.14.0",
     "prop-types": "^15.7.2",
     "react-test-renderer": "^16.9.0"
@@ -49,3 +47,9 @@ npm run storybook
   }
 }
 ```
+
+## Photos
+
+!["Logo"](https://github.com/matymcleod/scheduler/blob/master/docs/Logo.png?raw=true)
+!["Book"](https://github.com/matymcleod/scheduler/blob/master/docs/Book.png?raw=true)
+!["Monday"](https://github.com/matymcleod/scheduler/blob/master/docs/Monday.png?raw=true)
