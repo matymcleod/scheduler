@@ -3,10 +3,7 @@ import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "components/Appointments";
 import useApplicationData from "hooks/useApplicationData";
-
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
-
-
 
 export default function Application(props) {
 
@@ -19,23 +16,22 @@ export default function Application(props) {
 
   const appointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
-
   const schedule = appointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview)
     console.log('interview:', interview);
     return (
-    <Appointment 
-    key={appointment.id}
-    {...appointment}
-    interview={interview}
-    interviewers={interviewers}
-    bookInterview={bookInterview}
-    cancelInterview={cancelInterview}
-    />
-    )
-  })
+      <Appointment
+        key={appointment.id}
+        {...appointment}
+        interview={interview}
+        interviewers={interviewers}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
+      />
+    );
+  });
 
-return (
+  return (
     <main className="layout">
       <section className="sidebar">
         <img
@@ -45,10 +41,10 @@ return (
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-        <DayList
-          days={state.days}
-          day={state.day}
-          setDay={setDay}
+          <DayList
+            days={state.days}
+            day={state.day}
+            setDay={setDay}
           />
         </nav>
         <img
@@ -58,10 +54,9 @@ return (
         />
       </section>
       <section className="schedule">
-          {schedule}
-            <Appointment key="last" time="5pm"
-            />
-        
+        {schedule}
+        <Appointment key="last" time="5pm"
+        />
       </section>
     </main>
   );

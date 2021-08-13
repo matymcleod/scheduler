@@ -27,10 +27,6 @@ export default function Appointment(props) {
     props.interview && props.interview !== null ? SHOW : EMPTY
   );
 
-
-
-
-
   function save(name, interviewer) {
     const interview = {
       student: name,
@@ -91,13 +87,13 @@ export default function Appointment(props) {
     )}
 
     {mode === SAVING && (
-      <Status 
+      <Status
         message={'Saving'}
       />
     )}
 
     {mode === DELETING && (
-      <Status 
+      <Status
         message={'Deleting'}
       />
     )}
@@ -137,4 +133,4 @@ export default function Appointment(props) {
 
   </article>
   );
-};
+}
