@@ -1,26 +1,50 @@
-/*
-  We are rendering `<Application />` down below, so we need React.createElement
-*/
 import React from "react";
 
-/*
-  We import our helper functions from the react-testing-library
-  The render function allows us to render Components
-*/
 import { render } from "@testing-library/react";
 
-// We import the components that we are testing
-import Application from "components/Application";
-import Appointment from "components/Appointments/index";
+import Appointment from "components/Appointment";
 
-// A test that renders a React Component
-it("renders without crashing", () => {
-  render(<Application />);
-});
-
-// Group Appointment component tests using describe
 describe("Appointment", () => {
-  it("renders without crashing", () => {
-    render(<Appointment />);
+  const interview = {
+    student: "Lydia Miller-Jones",
+    interviewer: {
+      id: 1,
+      name: "Sylvia Palmer",
+      avatar: "https://i.imgur.com/LpaY82x.png"
+    }
+  };
+
+  it("renders without crashing when the mode is SHOW but the value of interview is null", () => {
+    const { getByText, rerender } = render(
+      <Appointment interview={interview} />
+    );
+
+    expect(getByText("Lydia Miller-Jones")).toBeInTheDocument();
+
+    rerender(<Appointment interview={null} />);
+  });
+
+  it("transitions correctly when the mode is SHOW but the value of interview is null", () => {
+    const { getByText, getByAltText, rerender } = render(
+      <Appointment interview={interview} />
+    );
+
+    expect(getByText("Lydia Miller-Jones")).toBeInTheDocument();
+
+    rerender(<Appointment interview={null} />);
+
+    expect(getByAltText("Add")).toBeInTheDocument();
+  });
+
+  it("transitions correctly when the mode is EMPTY but the value interview is not null", () => {
+    const { getByText, getByAltText, rerender } = render(
+      <Appointment interview={null} />
+    );
+
+    expect(getByAltText("Add")).toBeInTheDocument();
+
+    rerender(<Appointment interview={interview} />);
+
+    expect(getByText("Lydia Miller-Jones")).toBeInTheDocument();
   });
 });
